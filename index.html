@@ -1,509 +1,856 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Himanshu Singh — AI × Product × Growth</title>
-  <meta name="description" content="Personal portfolio and essays of Himanshu Singh. Former sports journalist bridging narrative instincts, analytical rigor, and AI product growth." />
-  
-  <!-- OpenGraph / Social Meta -->
+  <meta name="description" content="Former sports writer transitioning into AI × Product × Growth. From the press box to the latent space." />
+
+  <!-- OpenGraph / Twitter Meta -->
   <meta property="og:title" content="Himanshu Singh — AI × Product × Growth" />
-  <meta property="og:description" content="From the press box to the latent space. Crafting AI products with narrative gravity and high-velocity growth loops." />
+  <meta property="og:description" content="Former sports writer transitioning into AI × Product × Growth. From the press box to the latent space." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hiimanshu19x.github.io" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@hiimanshu19x" />
 
-  <!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans (Clean Modern Sans), JetBrains Mono -->
+  <!-- Moonwalk Fonts: IBM Plex Sans & IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Immediate Theme Loader (Zero Flash) -->
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Newsreader', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            paper: {
-              50: '#FAF9F5',
-              100: '#F5F4EE',
-              200: '#EAE8E0',
-              300: '#DDD9D0',
-            },
-            ink: {
-              900: '#141413',
-              800: '#262624',
-              700: '#3F3E3A',
-              500: '#6B6A65',
-              400: '#94928B',
-            },
-            accent: {
-              warm: '#A34E36',
-              pine: '#2C5E43',
-            }
-          }
-        }
+    (function() {
+      const stored = localStorage.getItem('theme');
+      if (stored) {
+        document.documentElement.setAttribute('data-theme', stored);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
       }
-    }
+    })();
   </script>
 
   <style>
-    ::selection {
-      background-color: #EAE8E0;
-      color: #141413;
+    /* -------------------------------------------------------------
+       MOONWALK THEME STYLES (by Abhinav Sharma, abhinavs/moonwalk)
+       Adapted with dual Light & Dark modes, project cards & drawers
+       ------------------------------------------------------------- */
+    :root {
+      --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
     }
-    /* Subtle custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
+
+    /* Light Theme (GitHub Light inspired) */
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --bg-secondary: #eaeef2;
+      --bg-subtle: #f6f8fa;
+      --headings: #1f2328;
+      --text: #1f2328;
+      --text-secondary: #59636e;
+      --links: #0969da;
+      --links-hover: #0550ae;
+      --highlight: #fff8c5;
+      --highlight-text: #4d3800;
+      --code-text: #8250df;
+      --border: rgba(31, 35, 40, 0.15);
+      --border-subtle: rgba(31, 35, 40, 0.08);
+      --drawer-bg: #ffffff;
+      --overlay-bg: rgba(31, 35, 40, 0.4);
     }
-    ::-webkit-scrollbar-track {
-      background: #FAF9F5;
+
+    /* Dark Theme (GitHub Dark inspired) */
+    html[data-theme="dark"] {
+      --bg: #0d1117;
+      --bg-secondary: #21262d;
+      --bg-subtle: #161b22;
+      --headings: #f0f6fc;
+      --text: #c9d1d9;
+      --text-secondary: #8b949e;
+      --links: #4493f8;
+      --links-hover: #79c0ff;
+      --highlight: #e3b341;
+      --highlight-text: #1f1600;
+      --code-text: #d2a8ff;
+      --border: rgba(240, 246, 252, 0.15);
+      --border-subtle: rgba(240, 246, 252, 0.08);
+      --drawer-bg: #161b22;
+      --overlay-bg: rgba(1, 4, 9, 0.7);
     }
-    ::-webkit-scrollbar-thumb {
-      background: #DDD9D0;
-      border-radius: 3px;
+
+    html {
+      height: 100%;
+      scroll-behavior: smooth;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94928B;
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+      min-height: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .w {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3.5em 1.5em;
+      box-sizing: border-box;
+    }
+
+    /* Masthead */
+    header {
+      padding: 1.5em 0;
+      margin-bottom: 2.5em;
+      border-top: 2px solid var(--links);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5em;
+    }
+
+    ul.horizontal-list {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      flex-wrap: wrap;
+      font-family: var(--font-sans);
+      gap: 1em;
+      align-items: center;
+    }
+
+    ul.horizontal-list li {
+      display: inline;
+    }
+
+    ul.horizontal-list li a {
+      color: var(--links);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    ul.horizontal-list li a:hover {
+      color: var(--links-hover);
+      text-decoration: underline;
+    }
+
+    /* Moonwalk Theme Switcher Button */
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.35em 0.55em;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      color: var(--headings);
+      border-color: var(--links);
+      background-color: var(--bg-subtle);
+    }
+
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--headings);
+      font-family: var(--font-sans);
+      line-height: 1.25;
+      margin-top: 1.6em;
+      margin-bottom: 0.4em;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 1.5rem + 1.6vw, 2.35rem);
+      letter-spacing: -0.025em;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem);
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      margin-top: 0;
+    }
+
+    p {
+      margin: 1.1em 0;
+      color: var(--text);
+    }
+
+    a {
+      color: var(--links);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--links-hover);
+      text-decoration: underline;
+    }
+
+    .dashed {
+      border-bottom: 1px dashed var(--border);
+      margin: 1.2em 0 1.8em 0;
+    }
+
+    /* Section Labels */
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: -0.005em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 0.4em;
+    }
+
+    .section-label span.meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: normal;
+    }
+
+    /* Availability Indicator */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 0.25em 0.65em;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.2em;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #2ea043;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(46, 160, 67, 0.2);
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1em;
+      margin: 1.2em 0;
+    }
+
+    @media (min-width: 640px) {
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card.full-width {
+        grid-column: span 2;
+      }
+    }
+
+    .card {
+      padding: 1.25em 1.35em;
+      border: 1px solid var(--border);
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      box-sizing: border-box;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--links);
+      transform: translateY(-1px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5em;
+      margin-bottom: 0.4em;
+    }
+
+    .card h3 {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--headings);
+      margin: 0;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin: 0.4em 0 1em 0;
+      line-height: 1.6;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.7em;
+      margin-top: auto;
+    }
+
+    .card-footer .action {
+      color: var(--links);
+      font-weight: 500;
+    }
+
+    /* Highlight badge (Moonwalk style) */
+    .highlight-badge {
+      background-color: var(--highlight);
+      color: var(--highlight-text);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15em 0.5em;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    /* Post list (Moonwalk style) */
+    .post-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5em 0;
+    }
+
+    .post-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75em 0;
+      border-bottom: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    @media (min-width: 580px) {
+      .post-item {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1.5em;
+      }
+    }
+
+    .post-item:hover .post-title {
+      color: var(--links);
+      text-decoration: underline;
+    }
+
+    .post-date {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      min-width: 95px;
+    }
+
+    .post-title {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 0.98rem;
+      color: var(--headings);
+      flex: 1;
+      margin: 0;
+      transition: color 0.15s ease;
+    }
+
+    .post-readtime {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* Blockquote / Markdown Alert (Moonwalk style) */
+    blockquote {
+      margin: 1.5em 0;
+      padding: 0.75em 1.25em;
+      border-left: 3px solid var(--links);
+      background-color: var(--bg-subtle);
+      color: var(--text-secondary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    blockquote p {
+      margin: 0.3em 0;
+    }
+
+    /* Code & Tags */
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      color: var(--code-text);
+      background-color: var(--bg-secondary);
+      padding: 0.15em 0.4em;
+      border-radius: var(--radius-sm);
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4em;
+      margin: 0.8em 0;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      background-color: var(--bg-secondary);
+      padding: 0.2em 0.55em;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4em;
+      padding-top: 1.5em;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    @media (min-width: 580px) {
+      footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    /* Slide-Over Dossier Reader (Modal Drawer) */
+    #drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay-bg);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    #drawer-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #drawer-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 660px;
+      background-color: var(--drawer-bg);
+      z-index: 101;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.35);
+      border-left: 1px solid var(--border);
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    #drawer-panel.active {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 1.2em 1.6em;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-header-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--links);
+    }
+
+    .drawer-close-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.35em 0.75em;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      transition: all 0.15s ease;
+    }
+
+    .drawer-close-btn:hover {
+      color: var(--headings);
+      border-color: var(--links);
+    }
+
+    .drawer-content {
+      padding: 2em 1.8em;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .drawer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.8em;
+    }
+
+    .drawer-title {
+      font-family: var(--font-sans);
+      font-size: clamp(1.45rem, 1.2rem + 1vw, 1.95rem);
+      font-weight: 700;
+      color: var(--headings);
+      margin-top: 0;
+      margin-bottom: 0.8em;
+      line-height: 1.25;
+    }
+
+    .drawer-body {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .drawer-body h4 {
+      margin-top: 1.5em;
+      margin-bottom: 0.4em;
+      color: var(--headings);
+    }
+
+    .drawer-body ul {
+      padding-left: 1.2em;
+      margin: 0.8em 0;
+    }
+
+    .drawer-body li {
+      margin: 0.4em 0;
     }
   </style>
 </head>
 
-<body class="bg-paper-50 text-ink-900 font-sans antialiased min-h-screen flex flex-col selection:bg-paper-200">
+<body>
+  <div class="w">
 
-  <!-- Top Announcement / Availability Strip -->
-  <div class="border-b border-paper-200 bg-paper-100/70 text-xs font-mono py-2 px-4 sm:px-8 text-ink-500 flex justify-between items-center">
-    <div class="flex items-center gap-2">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-      </span>
-      <span>Available for AI Product & Growth consulting / early roles</span>
-    </div>
-    <div class="hidden sm:flex items-center gap-4 text-[11px] text-ink-400">
-      <span>LATENT_SPACE // PRESS_BOX</span>
-      <span>[2026]</span>
-    </div>
-  </div>
+    <!-- Masthead with Navigation & Theme Switcher -->
+    <header>
+      <div class="nav-wrapper">
+        <ul class="horizontal-list">
+          <li><a href="#about">about</a></li>
+          <li><a href="#work">work</a></li>
+          <li><a href="#writing">writing</a></li>
+          <li><a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">x.com</a></li>
+          <li><a href="https://github.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">github</a></li>
+        </ul>
 
-  <!-- Header / Masthead -->
-  <header class="border-b border-paper-200 sticky top-0 bg-paper-50/90 backdrop-blur-md z-40 transition-all">
-    <div class="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
-      <a href="#" class="group flex flex-col">
-        <span class="font-serif text-2xl font-medium tracking-tight text-ink-900 group-hover:text-accent-warm transition-colors">Himanshu Singh</span>
-        <span class="font-mono text-[11px] text-ink-500 uppercase tracking-wider">AI × Product × Growth</span>
-      </a>
-
-      <nav class="flex items-center gap-6 text-sm font-medium text-ink-700">
-        <a href="#philosophy" class="hover:text-ink-900 transition-colors hidden sm:inline-block">The Shift</a>
-        <a href="#work" class="hover:text-ink-900 transition-colors">Work</a>
-        <a href="#writing" class="hover:text-ink-900 transition-colors">Writing</a>
-        <a href="#contact" class="hover:text-ink-900 transition-colors">Connect</a>
-        <a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer" class="font-mono text-xs px-2.5 py-1 rounded border border-paper-300 hover:border-ink-900 hover:bg-ink-900 hover:text-paper-50 transition-all flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <span>Follow</span>
-        </a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Content Container -->
-  <main class="max-w-4xl mx-auto px-6 py-12 sm:py-20 flex-1 w-full space-y-20 sm:space-y-28">
-
-    <!-- Hero Section: The Narrative Hook -->
-    <section class="space-y-6">
-      <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent-warm bg-amber-50/80 px-2.5 py-1 rounded-sm border border-amber-200/60">
-        <span>The Narrative Arc</span>
+        <!-- Moonwalk SVG Theme Toggle Button -->
+        <button aria-label="Toggle dark mode" aria-pressed="false" class="theme-toggle" id="theme-button">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="icon-sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="icon-moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
       </div>
 
-      <h1 class="font-serif text-4xl sm:text-6xl text-ink-900 leading-[1.15] font-normal tracking-tight">
-        From the press box <br class="hidden sm:inline" />
-        to the <span class="italic font-serif text-accent-warm">latent space</span>.
-      </h1>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Transitioning: Sports Journalism &rarr; AI &times; Product &times; Growth</span>
+      </div>
 
-      <p class="font-sans text-lg sm:text-xl text-ink-700 leading-relaxed font-light max-w-2xl">
-        I spent years writing sports on unforgiving, live-match deadlines—distilling chaos, momentum shifts, and human drama into stories people couldn’t stop reading. Today, I bring that same instinct for narrative gravity, audience psychology, and rapid iteration to building and scaling AI products.
+      <h1>Himanshu Singh</h1>
+      <p style="color: var(--text-secondary); margin-top: 0.3em; margin-bottom: 0;">
+        From the press box to the latent space. Building AI tools with narrative gravity and high-velocity growth loops.
+      </p>
+    </header>
+
+    <!-- Section 01: About / Origin -->
+    <section id="about">
+      <div class="section-label">
+        <span>01 / THE SHIFT</span>
+        <span class="meta">narrative &times; leverage</span>
+      </div>
+
+      <p>
+        I spent years writing sports on unforgiving, real-time match deadlines—distilling chaos, tactical swings, and high-pressure moments into stories readers couldn’t abandon.
+      </p>
+      
+      <blockquote>
+        <p>
+          "In the press box, you don't have the luxury of analysis paralysis. You synthesize fast, isolate the inflection point, and ship with 90 seconds on the clock."
+        </p>
+      </blockquote>
+
+      <p>
+        That background is an unfair advantage in tech. Today, language models are narrative engines. Products win on positioning and emotional resonance long before features:
       </p>
 
-      <!-- Quick Highlights Grid -->
-      <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-paper-200">
-        <div class="space-y-1">
-          <div class="font-mono text-xs text-ink-400 uppercase tracking-wide">Background</div>
-          <div class="text-sm font-medium text-ink-800">Sports Journalism & Editorial Strategy</div>
-        </div>
-        <div class="space-y-1">
-          <div class="font-mono text-xs text-ink-400 uppercase tracking-wide">Focus</div>
-          <div class="text-sm font-medium text-ink-800">AI Agents, Growth Loops, UX Narrative</div>
-        </div>
-        <div class="space-y-1">
-          <div class="font-mono text-xs text-ink-400 uppercase tracking-wide">Location & Base</div>
-          <div class="text-sm font-medium text-ink-800">Remote • Building Worldwide</div>
-        </div>
-      </div>
+      <ul style="padding-left: 1.2em;">
+        <li><strong>Narrative Gravity:</strong> Great positioning cuts through noise. Software is adopted when users feel immediate emotional clarity.</li>
+        <li><strong>Press-Box Velocity:</strong> Rapid hypothesis testing, zero perfectionism, and tight feedback loops with real users.</li>
+        <li><strong>AI as Leverage:</strong> Building multi-agent workflows, contextual evaluation guardrails, and organic acquisition loops.</li>
+      </ul>
     </section>
 
-    <!-- Section 1: The Bridge & Philosophy -->
-    <section id="philosophy" class="space-y-8 scroll-mt-24">
-      <div class="flex items-center justify-between border-b border-paper-300 pb-3">
-        <h2 class="font-mono text-xs uppercase tracking-widest text-ink-500">01 // The Unfair Advantage</h2>
-        <span class="font-mono text-xs text-ink-400">Why Journalism × AI?</span>
+    <!-- Section 02: Selected Work (Moonwalk Card List) -->
+    <section id="work">
+      <div class="section-label">
+        <span>02 / SELECTED WORK</span>
+        <span class="meta">click to view dossier</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="cards-grid">
         <!-- Card 1 -->
-        <div class="p-6 rounded-lg bg-paper-100/70 border border-paper-200 hover:border-paper-300 transition-colors flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <span class="font-mono text-xs text-accent-warm">01. GRAVITY</span>
-            <h3 class="font-serif text-xl font-medium text-ink-900">Products Win on Story Before Features</h3>
-            <p class="text-sm text-ink-700 leading-relaxed">
-              Every technical feature is a commodity until it is anchored in clear positioning. Knowing how to capture human attention in a split second transforms cold interfaces into compulsive habits.
+        <div class="card" onclick="openDrawer('matchpulse')">
+          <div>
+            <div class="card-top">
+              <h3>MatchPulse AI</h3>
+              <span class="highlight-badge">94% Editorial Rating</span>
+            </div>
+            <p class="card-desc">
+              Autonomous telemetry agent turning 20,000 raw live match data points into human-caliber sports narratives under 4 seconds.
             </p>
           </div>
-          <div class="font-mono text-[11px] text-ink-400 border-t border-paper-200/80 pt-3">
-            Focus: Positioning & Value Articulation
+          <div class="card-footer">
+            <span>AI Agents // LLMs</span>
+            <span class="action">View dossier &rarr;</span>
           </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="p-6 rounded-lg bg-paper-100/70 border border-paper-200 hover:border-paper-300 transition-colors flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <span class="font-mono text-xs text-accent-pine">02. VELOCITY</span>
-            <h3 class="font-serif text-xl font-medium text-ink-900">The Press-Box Tempo</h3>
-            <p class="text-sm text-ink-700 leading-relaxed">
-              Filing 1,000 words with 90 seconds left on the clock kills perfectionism. It breeds radical bias for action, rapid hypothesis testing, and the discipline to ship without second-guessing.
+        <div class="card" onclick="openDrawer('activation-loop')">
+          <div>
+            <div class="card-top">
+              <h3>The First-Mile Loop</h3>
+              <span class="highlight-badge">+38% D-7 Retention</span>
+            </div>
+            <p class="card-desc">
+              Inverted a friction-heavy B2B onboarding flow into an instant value sandbox, collapsing time-to-value down to &lt;60 seconds.
             </p>
           </div>
-          <div class="font-mono text-[11px] text-ink-400 border-t border-paper-200/80 pt-3">
-            Focus: Tight Growth Iteration Cycles
+          <div class="card-footer">
+            <span>Product Growth // UX</span>
+            <span class="action">View dossier &rarr;</span>
           </div>
         </div>
 
         <!-- Card 3 -->
-        <div class="p-6 rounded-lg bg-paper-100/70 border border-paper-200 hover:border-paper-300 transition-colors flex flex-col justify-between space-y-4">
-          <div class="space-y-2">
-            <span class="font-mono text-xs text-indigo-700">03. SYNTHESIS</span>
-            <h3 class="font-serif text-xl font-medium text-ink-900">AI as Narrative Leverage</h3>
-            <p class="text-sm text-ink-700 leading-relaxed">
-              Large language models are inherently narrative machines. Guiding them with high editorial taste turns raw data streams into high-signal insights, personalized onboarding, and organic distribution.
+        <div class="card full-width" onclick="openDrawer('synthesis-brief')">
+          <div>
+            <div class="card-top">
+              <h3>Briefly: Intelligence Workspace</h3>
+              <span class="highlight-badge">Zero-Hallucination Guardrails</span>
+            </div>
+            <p class="card-desc">
+              AI-assisted competitive research pipeline combining daily web crawling with strict citation grounding to deliver executive-grade product briefings.
             </p>
           </div>
-          <div class="font-mono text-[11px] text-ink-400 border-t border-paper-200/80 pt-3">
-            Focus: Autonomous Workflows & Context
+          <div class="card-footer">
+            <span>RAG // Prototype // Evals</span>
+            <span class="action">View dossier &rarr;</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: Selected Work & Case Studies -->
-    <section id="work" class="space-y-8 scroll-mt-24">
-      <div class="flex items-center justify-between border-b border-paper-300 pb-3">
-        <h2 class="font-mono text-xs uppercase tracking-widest text-ink-500">02 // Selected Work & Case Studies</h2>
-        <span class="font-mono text-xs text-ink-400">Click to read full dossier</span>
+    <!-- Section 03: Writing (Moonwalk Post List) -->
+    <section id="writing">
+      <div class="section-label">
+        <span>03 / WRITING</span>
+        <span class="meta">essays & breakdowns</span>
       </div>
 
-      <div class="space-y-4">
-        <!-- Project 1 -->
-        <article onclick="openDrawer('matchpulse')" class="group p-6 sm:p-8 rounded-lg bg-paper-100/50 hover:bg-paper-100 border border-paper-200 hover:border-ink-900/40 transition-all cursor-pointer">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-            <div class="flex items-center gap-3">
-              <span class="font-mono text-xs text-accent-warm font-semibold tracking-wide">CASE STUDY 01</span>
-              <span class="h-1 w-1 rounded-full bg-paper-300"></span>
-              <span class="font-mono text-xs text-ink-500">AI Intelligence Agent</span>
-            </div>
-            <span class="font-mono text-xs text-ink-400 group-hover:text-ink-900 transition-colors flex items-center gap-1">
-              Read Breakdown <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-            </span>
-          </div>
+      <ul class="post-list">
+        <li class="post-item" onclick="openDrawer('essay-retention')">
+          <span class="post-date">2025-10-18</span>
+          <p class="post-title">The Architecture of Attention: What 500+ Live Sports Matches Taught Me About User Retention</p>
+          <span class="post-readtime">6 min read</span>
+        </li>
 
-          <h3 class="font-serif text-2xl sm:text-3xl font-normal text-ink-900 group-hover:text-accent-warm transition-colors mb-2">
-            MatchPulse AI: Turning 20,000 Live Telemetry Points into Broadcast Narratives
-          </h3>
-          <p class="text-sm sm:text-base text-ink-700 font-light leading-relaxed max-w-3xl mb-4">
-            Built an autonomous agent pipeline that ingests raw play-by-play data streams, identifies subtle tactical momentum shifts, and drafts human-caliber real-time match reports under 4 seconds.
-          </p>
+        <li class="post-item" onclick="openDrawer('essay-editorial-taste')">
+          <span class="post-date">2025-11-24</span>
+          <p class="post-title">Why AI Products Need Editorial Taste, Not Just Bigger Context Windows</p>
+          <span class="post-readtime">8 min read</span>
+        </li>
 
-          <div class="flex flex-wrap items-center gap-2 pt-2">
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">LLM Agents</span>
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">Prompt Chaining</span>
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">Real-Time Data</span>
-            <span class="font-mono text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">94% Editorial Rating</span>
-          </div>
-        </article>
+        <li class="post-item" onclick="openDrawer('essay-growth-playbook')">
+          <span class="post-date">2026-01-09</span>
+          <p class="post-title">The Zero-to-One Growth Playbook for Solo AI Builders</p>
+          <span class="post-readtime">5 min read</span>
+        </li>
+      </ul>
+    </section>
 
-        <!-- Project 2 -->
-        <article onclick="openDrawer('activation-loop')" class="group p-6 sm:p-8 rounded-lg bg-paper-100/50 hover:bg-paper-100 border border-paper-200 hover:border-ink-900/40 transition-all cursor-pointer">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-            <div class="flex items-center gap-3">
-              <span class="font-mono text-xs text-accent-pine font-semibold tracking-wide">CASE STUDY 02</span>
-              <span class="h-1 w-1 rounded-full bg-paper-300"></span>
-              <span class="font-mono text-xs text-ink-500">Product Growth & UX</span>
-            </div>
-            <span class="font-mono text-xs text-ink-400 group-hover:text-ink-900 transition-colors flex items-center gap-1">
-              Read Breakdown <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-            </span>
-          </div>
+    <!-- Section 04: Stack & Now -->
+    <section id="now">
+      <div class="section-label">
+        <span>04 / CURRENT FOCUS & TOOLKIT</span>
+        <span class="meta">active stack</span>
+      </div>
 
-          <h3 class="font-serif text-2xl sm:text-3xl font-normal text-ink-900 group-hover:text-accent-pine transition-colors mb-2">
-            The First-Mile Overhaul: Engineering an Instant "Aha!" Moment
-          </h3>
-          <p class="text-sm sm:text-base text-ink-700 font-light leading-relaxed max-w-3xl mb-4">
-            Diagnosed a 62% sign-up drop-off in a knowledge worker workflow app. Re-architected onboarding from a dry setup wizard into a narrative diagnostic demo that demonstrates tangible value in &lt;60 seconds.
-          </p>
+      <p style="margin-bottom: 0.5em;">
+        Currently experimenting with multi-agent coordination pipelines, autonomous retrieval evals, and organic viral loops powered by generative artifacts.
+      </p>
 
-          <div class="flex flex-wrap items-center gap-2 pt-2">
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">Funnel Analytics</span>
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">Interactive Onboarding</span>
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">A/B Testing</span>
-            <span class="font-mono text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">+38% D-7 Retention</span>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article onclick="openDrawer('synthesis-brief')" class="group p-6 sm:p-8 rounded-lg bg-paper-100/50 hover:bg-paper-100 border border-paper-200 hover:border-ink-900/40 transition-all cursor-pointer">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-            <div class="flex items-center gap-3">
-              <span class="font-mono text-xs text-indigo-700 font-semibold tracking-wide">CASE STUDY 03</span>
-              <span class="h-1 w-1 rounded-full bg-paper-300"></span>
-              <span class="font-mono text-xs text-ink-500">AI Tooling Prototype</span>
-            </div>
-            <span class="font-mono text-xs text-ink-400 group-hover:text-ink-900 transition-colors flex items-center gap-1">
-              Read Breakdown <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-            </span>
-          </div>
-
-          <h3 class="font-serif text-2xl sm:text-3xl font-normal text-ink-900 group-hover:text-indigo-700 transition-colors mb-2">
-            Briefly: High-Signal Market Intelligence for Product Strategists
-          </h3>
-          <p class="text-sm sm:text-base text-ink-700 font-light leading-relaxed max-w-3xl mb-4">
-            Designed an autonomous briefing workspace combining multi-source web crawling with strict citation grounding to produce executive-ready competitive teardowns, eliminating hallucinations.
-          </p>
-
-          <div class="flex flex-wrap items-center gap-2 pt-2">
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">RAG Pipelines</span>
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">Evaluation Framework</span>
-            <span class="font-mono text-[11px] bg-paper-200/80 text-ink-700 px-2 py-0.5 rounded">Product Specs</span>
-            <span class="font-mono text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">Zero-Hallucination Guardrails</span>
-          </div>
-        </article>
+      <div class="tag-cloud">
+        <span class="tag">Python</span>
+        <span class="tag">Claude & OpenAI APIs</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">PostHog</span>
+        <span class="tag">SQL & Postgres</span>
+        <span class="tag">Figma</span>
+        <span class="tag">GitHub Pages</span>
       </div>
     </section>
 
-    <!-- Section 3: Writing & Thought Leadership -->
-    <section id="writing" class="space-y-8 scroll-mt-24">
-      <div class="flex items-center justify-between border-b border-paper-300 pb-3">
-        <h2 class="font-mono text-xs uppercase tracking-widest text-ink-500">03 // Selected Writing & Essays</h2>
-        <span class="font-mono text-xs text-ink-400">Long-form thinking</span>
-      </div>
-
-      <div class="divide-y divide-paper-200">
-        <!-- Essay 1 -->
-        <div onclick="openDrawer('essay-retention')" class="group py-6 first:pt-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 cursor-pointer">
-          <div class="space-y-1.5 max-w-2xl">
-            <div class="flex items-center gap-2 text-xs font-mono text-ink-400">
-              <span>OCT 2025</span>
-              <span>•</span>
-              <span>6 MIN READ</span>
-            </div>
-            <h3 class="font-serif text-xl sm:text-2xl font-normal text-ink-900 group-hover:text-accent-warm transition-colors">
-              The Architecture of Attention: What 500+ Live Sports Matches Taught Me About User Retention
-            </h3>
-            <p class="text-sm text-ink-700 font-light leading-relaxed">
-              Why retention is never about reminders or notification spam. It is about emotional cadence, unresolved tension, and respecting the user's finite mental bandwidth.
-            </p>
-          </div>
-          <span class="font-mono text-xs text-ink-400 group-hover:text-ink-900 transition-colors self-start sm:self-auto flex items-center gap-1">
-            Read Essay <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-          </span>
-        </div>
-
-        <!-- Essay 2 -->
-        <div onclick="openDrawer('essay-editorial-taste')" class="group py-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 cursor-pointer">
-          <div class="space-y-1.5 max-w-2xl">
-            <div class="flex items-center gap-2 text-xs font-mono text-ink-400">
-              <span>NOV 2025</span>
-              <span>•</span>
-              <span>8 MIN READ</span>
-            </div>
-            <h3 class="font-serif text-xl sm:text-2xl font-normal text-ink-900 group-hover:text-accent-warm transition-colors">
-              Why AI Products Need Editorial Taste, Not Just Bigger Context Windows
-            </h3>
-            <p class="text-sm text-ink-700 font-light leading-relaxed">
-              When raw generation becomes free, curation and curation criteria become the defensible moat. How product builders can apply journalistic skepticism to LLM outputs.
-            </p>
-          </div>
-          <span class="font-mono text-xs text-ink-400 group-hover:text-ink-900 transition-colors self-start sm:self-auto flex items-center gap-1">
-            Read Essay <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-          </span>
-        </div>
-
-        <!-- Essay 3 -->
-        <div onclick="openDrawer('essay-growth-playbook')" class="group py-6 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 cursor-pointer">
-          <div class="space-y-1.5 max-w-2xl">
-            <div class="flex items-center gap-2 text-xs font-mono text-ink-400">
-              <span>JAN 2026</span>
-              <span>•</span>
-              <span>5 MIN READ</span>
-            </div>
-            <h3 class="font-serif text-xl sm:text-2xl font-normal text-ink-900 group-hover:text-accent-warm transition-colors">
-              The Zero-to-One Growth Playbook for Solo AI Builders
-            </h3>
-            <p class="text-sm text-ink-700 font-light leading-relaxed">
-              A breakdown of how narrative positioning on X, lightweight micro-tools, and engineering-as-marketing can generate initial product momentum without paid acquisition.
-            </p>
-          </div>
-          <span class="font-mono text-xs text-ink-400 group-hover:text-ink-900 transition-colors self-start sm:self-auto flex items-center gap-1">
-            Read Essay <span class="group-hover:translate-x-0.5 transition-transform">→</span>
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Currently Building & Toolkit -->
-    <section class="p-6 sm:p-8 rounded-lg border border-paper-200 bg-paper-100/40 space-y-6">
-      <div class="flex items-center justify-between">
-        <h2 class="font-mono text-xs uppercase tracking-widest text-ink-500">Currently / Now</h2>
-        <span class="font-mono text-xs text-ink-400">Updated Sept 2026</span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-        <div class="space-y-2">
-          <h4 class="font-serif text-lg font-medium text-ink-900">What I'm Exploring</h4>
-          <ul class="space-y-1.5 text-ink-700 font-light list-disc list-inside">
-            <li>Multi-agent coordination for autonomous research pipelines</li>
-            <li>Low-latency UI patterns for conversational search interfaces</li>
-            <li>Organic viral loops powered by generative artifact sharing</li>
-          </ul>
-        </div>
-
-        <div class="space-y-2">
-          <h4 class="font-serif text-lg font-medium text-ink-900">Working Toolkit</h4>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">Python</span>
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">Claude & OpenAI APIs</span>
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">Tailwind CSS</span>
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">PostHog</span>
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">SQL & Postgres</span>
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">Figma</span>
-            <span class="font-mono text-xs bg-paper-200 text-ink-800 px-2 py-0.5 rounded">GitHub Pages</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Contact & Colophon -->
-    <section id="contact" class="space-y-8 pt-8 border-t border-paper-300">
-      <div class="space-y-4 max-w-xl">
-        <span class="font-mono text-xs uppercase tracking-widest text-accent-warm">Get In Touch</span>
-        <h2 class="font-serif text-3xl sm:text-4xl text-ink-900 font-normal">
-          Let’s build something with narrative gravity.
-        </h2>
-        <p class="text-sm sm:text-base text-ink-700 font-light leading-relaxed">
-          Whether you’re looking to sharpen product positioning, craft AI prototypes with genuine utility, or brainstorm high-velocity growth experiments, my inbox is open.
-        </p>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-4">
-        <!-- X Link -->
-        <a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded border border-ink-900 bg-ink-900 text-paper-50 hover:bg-ink-800 font-mono text-xs transition-all shadow-sm">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <span>Connect on X (@hiimanshu19x)</span>
-        </a>
-
-        <!-- GitHub Link -->
-        <a href="https://github.com/hiimanshu19x" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded border border-paper-300 hover:border-ink-900 bg-paper-100 hover:bg-paper-200 text-ink-900 font-mono text-xs transition-all">
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          <span>GitHub / hiimanshu19x</span>
-        </a>
-
-        <!-- Mail Placeholder -->
-        <a href="mailto:himanshu@example.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded border border-paper-300 hover:border-ink-900 bg-paper-100 hover:bg-paper-200 text-ink-900 font-mono text-xs transition-all">
-          <span>Email Direct</span>
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer / Colophon -->
-  <footer class="border-t border-paper-200 py-8 px-6 text-center text-xs font-mono text-ink-400 bg-paper-100/50">
-    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <!-- Footer -->
+    <footer>
       <div>
-        <span>© 2026 Himanshu Singh • Hosted on </span>
-        <a href="https://hiimanshu19x.github.io" class="underline hover:text-ink-800 transition-colors">hiimanshu19x.github.io</a>
+        <span>&copy; 2026 Himanshu Singh</span>
       </div>
-      <div class="text-[11px] text-ink-400">
-        Static HTML + Tailwind CSS • Zero Build Step • Editorial Edition
+      <div>
+        <ul class="horizontal-list" style="gap: 1.2em;">
+          <li><a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">x.com/hiimanshu19x</a></li>
+          <li><a href="https://github.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">github</a></li>
+          <li><a href="mailto:himanshu@example.com">email</a></li>
+        </ul>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Slide-Over Deep Dive Reader Drawer (Modal Overlay) -->
-  <div id="drawer-backdrop" onclick="closeDrawer()" class="fixed inset-0 bg-ink-900/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  </div>
 
-  <aside id="drawer-panel" class="fixed top-0 right-0 bottom-0 w-full sm:max-w-2xl bg-paper-50 z-50 shadow-2xl border-l border-paper-300 translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-    <!-- Drawer Header -->
-    <div class="p-6 border-b border-paper-200 flex items-center justify-between bg-paper-100/60">
-      <div id="drawer-tag" class="font-mono text-xs uppercase tracking-widest text-accent-warm font-medium">
-        DOSSIER
-      </div>
-      <button onclick="closeDrawer()" aria-label="Close reader" class="p-1.5 rounded hover:bg-paper-200 text-ink-500 hover:text-ink-900 font-mono text-xs flex items-center gap-1 transition-colors">
-        <span>Close [ESC]</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+  <!-- Slide-Over Dossier Reader (Modal Drawer) -->
+  <div id="drawer-backdrop" onclick="closeDrawer()"></div>
+
+  <aside id="drawer-panel">
+    <div class="drawer-header">
+      <div id="drawer-tag" class="drawer-header-tag">DOSSIER</div>
+      <button onclick="closeDrawer()" class="drawer-close-btn" aria-label="Close reader">
+        <span>close [esc]</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </div>
 
-    <!-- Drawer Content Scrollable Area -->
-    <div class="p-6 sm:p-10 overflow-y-auto flex-1 space-y-6">
-      <div id="drawer-meta" class="font-mono text-xs text-ink-400 flex items-center gap-3">
-        <!-- Injected via JS -->
-      </div>
-      
-      <h2 id="drawer-title" class="font-serif text-3xl sm:text-4xl text-ink-900 font-normal leading-tight">
-        <!-- Injected via JS -->
-      </h2>
-
-      <div id="drawer-body" class="prose prose-stone text-ink-800 font-sans space-y-4 text-sm sm:text-base leading-relaxed font-light">
-        <!-- Injected via JS -->
-      </div>
+    <div class="drawer-content">
+      <div id="drawer-meta" class="drawer-meta"></div>
+      <h2 id="drawer-title" class="drawer-title"></h2>
+      <div id="drawer-body" class="drawer-body"></div>
     </div>
   </aside>
 
-  <!-- Interactive Data & Drawer Scripts -->
+  <!-- Dossier Content Database & Drawer Controller -->
   <script>
-    // Content Database for Case Studies and Essays
     const articles = {
       'matchpulse': {
         tag: 'CASE STUDY // AI AGENTS & SPORTS DATA',
         meta: 'DECEMBER 2025 • PROTOTYPE & BENCHMARK • 94% EDITORIAL ACCURACY',
         title: 'MatchPulse AI: Turning 20,000 Live Telemetry Points into Broadcast Narratives',
         body: `
-          <p class="text-base text-ink-700 font-normal border-l-2 border-accent-warm pl-4 italic">
-            "Numbers tell you what happened in a match. Narrative tells you why it mattered to the 50,000 screaming people in the arena."
-          </p>
+          <blockquote>
+            <p>"Numbers tell you what happened in a match. Narrative tells you why it mattered to the 50,000 screaming people in the arena."</p>
+          </blockquote>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Problem</h4>
+          <h4>The Problem</h4>
           <p>
             Modern sports data APIs spit out millions of discrete events per season: xG, ball velocity, press frequency, possession sequences. Yet, automated recap generators usually spit out robotic templates ("Team A had 54% possession and scored in minute 32"). They lack emotional momentum, tactical context, and story arc.
           </p>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Hypothesis & Architecture</h4>
+          <h4>The Hypothesis & Architecture</h4>
           <p>
             As a sports journalist, I knew that every match report hinges on a single decisive inflection point—the tactical tweak or mental collapse that tilted the game. We designed MatchPulse using a 3-tier LLM agent chain:
           </p>
-          <ul class="list-disc list-inside space-y-2 pl-2">
+          <ul>
             <li><strong>Telemetry Analyzer:</strong> Ingests JSON event stream and flags anomalies (e.g. pressure index spikes preceding a goal).</li>
             <li><strong>Narrative Synthesizer:</strong> Identifies the central dramatic conflict (e.g., "Underdog holding on vs. relentless siege").</li>
             <li><strong>Editorial Stylist:</strong> Renders copy applying journalistic cadence, punchy syntax, and human flair.</li>
           </ul>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">Results & Takeaway</h4>
+          <h4>Results & Takeaway</h4>
           <p>
             In blind A/B evaluations conducted with 12 sports editors and 250 football fans, MatchPulse articles were mistaken for veteran human columnists 84% of the time, while generating complete 800-word match reviews in under 4 seconds after the final whistle.
           </p>
@@ -515,26 +862,26 @@
         meta: 'FEBRUARY 2026 • GROWTH EXPERIMENT • +38% D-7 RETENTION',
         title: 'The First-Mile Overhaul: Engineering an Instant "Aha!" Moment',
         body: `
-          <p class="text-base text-ink-700 font-normal border-l-2 border-accent-pine pl-4 italic">
-            "A reader gives a sports column 10 seconds before turning the page. A user gives your SaaS app even less before abandoning the tab."
-          </p>
+          <blockquote>
+            <p>"A reader gives a sports column 10 seconds before turning the page. A user gives your SaaS app even less before abandoning the tab."</p>
+          </blockquote>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Bottleneck</h4>
+          <h4>The Bottleneck</h4>
           <p>
             An internal audit of a B2B knowledge management tool revealed a catastrophic drop: 62% of new signups never completed the initial workspace setup. The app asked users to connect Google Drive, configure permissions, and invite teammates before ever showing them the core product value.
           </p>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Growth Intervention</h4>
+          <h4>The Growth Intervention</h4>
           <p>
             We inverted the entire onboarding loop by applying the journalistic "Inverted Pyramid" principle (lead with the climax first, defer the dry details):
           </p>
-          <ul class="list-disc list-inside space-y-2 pl-2">
+          <ul>
             <li><strong>Zero-Setup Interactive Sandbox:</strong> Instead of blank configurations, users were dropped into a pre-populated "sample scenario" with live interactive insights.</li>
             <li><strong>Micro-Commitments:</strong> Users experienced the AI summary in their first 20 seconds before being asked for OAuth permissions.</li>
             <li><strong>Progressive Disclosure:</strong> Account settings were moved to non-blocking contextual sidebars.</li>
           </ul>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Impact</h4>
+          <h4>The Impact</h4>
           <p>
             Day-1 activation jumped by +47%, and Day-7 cohort retention increased by +38%. By treating the onboarding flow as a narrative journey rather than an administrative form, friction collapsed.
           </p>
@@ -546,26 +893,26 @@
         meta: 'JANUARY 2026 • PROTOTYPE • ZERO-HALLUCINATION WORKFLOW',
         title: 'Briefly: High-Signal Market Intelligence for Product Teams',
         body: `
-          <p class="text-base text-ink-700 font-normal border-l-2 border-indigo-700 pl-4 italic">
-            "In reporting, an unverified rumor gets you sued. In AI products, an unverified hallucination destroys executive trust."
-          </p>
+          <blockquote>
+            <p>"In reporting, an unverified rumor gets you sued. In AI products, an unverified hallucination destroys executive trust."</p>
+          </blockquote>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Challenge</h4>
+          <h4>The Challenge</h4>
           <p>
             Product managers and growth leads spend 8+ hours a week sifting through competitor changelogs, forum feedback, and press releases. Standard LLM research tools frequently fabricate release dates, confuse product names, and produce generic summaries.
           </p>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Solution</h4>
+          <h4>The Solution</h4>
           <p>
             I built Briefly—an AI-assisted competitive briefing tool built on rigorous fact-checking guardrails:
           </p>
-          <ul class="list-disc list-inside space-y-2 pl-2">
+          <ul>
             <li><strong>Multi-Source Crawler:</strong> Monitors target domains, GitHub releases, and Substack updates daily.</li>
             <li><strong>Strict Semantic Attribution:</strong> Every factual claim in the generated brief must be linked to an exact span in the raw crawl snippet.</li>
             <li><strong>Editorial Synthesis Engine:</strong> Structures insights into strategic takeaways, positioning shifts, and growth threats.</li>
           </ul>
 
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">Key Insight</h4>
+          <h4>Key Insight</h4>
           <p>
             The value was never the AI generation itself—it was the reliability guarantee. Editorial rigor is the highest form of UX in an age of abundant synthetic noise.
           </p>
@@ -586,11 +933,11 @@
           <p>
             When product managers talk about retention, they almost always default to mechanical interventions: push notifications, email drip sequences, gamified streaks, and discounts. But these are superficial crutches. If your user does not feel a resolution of tension, or anticipation of the next milestone, no push notification will save your LTV.
           </p>
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">1. The Concept of Open Loops</h4>
+          <h4>1. The Concept of Open Loops</h4>
           <p>
             Great sports writing works because of open narrative loops: Will the veteran defender survive another 15 minutes? Will the teenage prodigy seize the moment? Products that maintain high retention design natural loops. In Duolingo, it is linguistic mastery. In Linear, it is closing sprints. In GitHub, it is the clean green graph.
           </p>
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">2. Respect the Emotional Bandwidth</h4>
+          <h4>2. Respect the Emotional Bandwidth</h4>
           <p>
             A fan's attention is precious. If a sports article wastes 3 paragraphs on boilerplate throat-clearing, they leave. Software must do the same: eliminate every micro-second of unnecessary friction between user intent and user dopamine.
           </p>
@@ -608,14 +955,14 @@
           <p>
             Yet when you look at the landscape of AI wrapper apps, 90% of them feel utterly generic. They vomit thousands of words of polite, meandering, synthetic prose that nobody wants to read.
           </p>
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Scarcity Inversion</h4>
+          <h4>The Scarcity Inversion</h4>
           <p>
             Economics 101 dictates that when a good becomes abundant, value migrates to the scarce complement. When text generation is free, <strong>tasteful editing is invaluable</strong>.
           </p>
           <p>
             Editorial taste in AI products means:
           </p>
-          <ul class="list-disc list-inside space-y-2 pl-2">
+          <ul>
             <li>Knowing when the model should output <em>nothing</em> rather than a bland hallucination.</li>
             <li>Formatting data into scannable, dense, intuitive visual summaries rather than walls of bullet points.</li>
             <li>Injecting strong point-of-view, perspective, and brand tone rather than neutral corporate jargon.</li>
@@ -637,13 +984,41 @@
           <p>
             When you don’t have a \$100k marketing budget, how do you find your first 1,000 passionate users for an AI tool? The answer lies in engineering-as-marketing, public storytelling, and building in the open.
           </p>
-          <h4 class="font-serif text-xl font-medium text-ink-900 pt-2">The Three Rules</h4>
+          <h4>The Three Rules</h4>
           <p><strong>1. Build the Micro-Tool First:</strong> Don't launch a complex platform. Launch a single-utility free tool that solves one acute annoyance in 5 seconds. Let it generate shareable artifacts that link back to your core app.</p>
           <p><strong>2. Narrative Transparency on X:</strong> Don't post generic updates. Share the actual metrics, the failed prompts, the bizarre edge cases, and the emotional roller coaster. People follow narratives, not corporations.</p>
           <p><strong>3. Viral Artifact Loops:</strong> If your AI generates something useful (a design, a document, a breakdown), make the export beautiful and embed your watermarked attribution. Turn every active user into an organic distribution vector.</p>
         `
       }
     };
+
+    // Moonwalk Theme Controller
+    const themeBtn = document.getElementById('theme-button');
+    const sunIcon = themeBtn.querySelector('.icon-sun');
+    const moonIcon = themeBtn.querySelector('.icon-moon');
+
+    function updateThemeUI(theme) {
+      themeBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      if (theme === 'dark') {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+    }
+
+    // Initialize button state
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateThemeUI(currentTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const active = document.documentElement.getAttribute('data-theme');
+      const next = active === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeUI(next);
+    });
 
     // Drawer Controller
     const backdrop = document.getElementById('drawer-backdrop');
@@ -662,34 +1037,19 @@
       drawerTitle.textContent = data.title;
       drawerBody.innerHTML = data.body;
 
-      // Show backdrop
-      backdrop.classList.remove('opacity-0', 'pointer-events-none');
-      backdrop.classList.add('opacity-100', 'pointer-events-auto');
-
-      // Slide in panel
-      panel.classList.remove('translate-x-full');
-      panel.classList.add('translate-x-0');
-
+      backdrop.classList.add('active');
+      panel.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
-      // Hide backdrop
-      backdrop.classList.remove('opacity-100', 'pointer-events-auto');
-      backdrop.classList.add('opacity-0', 'pointer-events-none');
-
-      // Slide out panel
-      panel.classList.remove('translate-x-0');
-      panel.classList.add('translate-x-full');
-
+      backdrop.classList.remove('active');
+      panel.classList.remove('active');
       document.body.style.overflow = '';
     }
 
-    // Close on Escape key
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeDrawer();
-      }
+      if (e.key === 'Escape') closeDrawer();
     });
   </script>
 </body>
