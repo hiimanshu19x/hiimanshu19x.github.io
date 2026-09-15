@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Himanshu Singh — AI × Product × Growth</title>
-  <meta name="description" content="Former sports writer transitioning into AI × Product × Growth. From the press box to the latent space." />
+  <title>Himanshu Singh — AI × Products × Content × Growth</title>
+  <meta name="description" content="Former sports writer bridging storytelling, AI prototypes, content engines, and product growth loops." />
 
   <!-- OpenGraph / Twitter Meta -->
-  <meta property="og:title" content="Himanshu Singh — AI × Product × Growth" />
-  <meta property="og:description" content="Former sports writer transitioning into AI × Product × Growth. From the press box to the latent space." />
+  <meta property="og:title" content="Himanshu Singh — AI × Products × Content × Growth" />
+  <meta property="og:description" content="From the press box to the latent space. Building AI tools with narrative gravity and high-velocity growth loops." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hiimanshu19x.github.io" />
   <meta name="twitter:card" content="summary" />
@@ -36,7 +36,8 @@
   <style>
     /* -------------------------------------------------------------
        MOONWALK THEME STYLES (by Abhinav Sharma, abhinavs/moonwalk)
-       Adapted with dual Light & Dark modes, project cards & drawers
+       Extended with 4 themes (Dark, Light, Sepia, Nord),
+       smooth underline highlights, top-right theme toggle, and dropdown
        ------------------------------------------------------------- */
     :root {
       --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -46,7 +47,28 @@
       --radius-lg: 0.75rem;
     }
 
-    /* Light Theme (GitHub Light inspired) */
+    /* 1. Dark Theme (GitHub Dark inspired) */
+    html[data-theme="dark"] {
+      --bg: #0d1117;
+      --bg-secondary: #21262d;
+      --bg-subtle: #161b22;
+      --headings: #f0f6fc;
+      --text: #c9d1d9;
+      --text-secondary: #8b949e;
+      --links: #4493f8;
+      --links-hover: #79c0ff;
+      --highlight: #e3b341;
+      --highlight-text: #1f1600;
+      --code-text: #d2a8ff;
+      --border: rgba(240, 246, 252, 0.15);
+      --border-subtle: rgba(240, 246, 252, 0.08);
+      --drawer-bg: #161b22;
+      --overlay-bg: rgba(1, 4, 9, 0.75);
+      --dropdown-bg: #161b22;
+      --dropdown-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    /* 2. Light Theme (GitHub Light inspired) */
     html[data-theme="light"] {
       --bg: #ffffff;
       --bg-secondary: #eaeef2;
@@ -63,25 +85,50 @@
       --border-subtle: rgba(31, 35, 40, 0.08);
       --drawer-bg: #ffffff;
       --overlay-bg: rgba(31, 35, 40, 0.4);
+      --dropdown-bg: #ffffff;
+      --dropdown-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
     }
 
-    /* Dark Theme (GitHub Dark inspired) */
-    html[data-theme="dark"] {
-      --bg: #0d1117;
-      --bg-secondary: #21262d;
-      --bg-subtle: #161b22;
-      --headings: #f0f6fc;
-      --text: #c9d1d9;
-      --text-secondary: #8b949e;
-      --links: #4493f8;
-      --links-hover: #79c0ff;
-      --highlight: #e3b341;
-      --highlight-text: #1f1600;
-      --code-text: #d2a8ff;
-      --border: rgba(240, 246, 252, 0.15);
-      --border-subtle: rgba(240, 246, 252, 0.08);
-      --drawer-bg: #161b22;
-      --overlay-bg: rgba(1, 4, 9, 0.7);
+    /* 3. Sepia / Editorial Paper (Classic Journalism) */
+    html[data-theme="sepia"] {
+      --bg: #f9f5ec;
+      --bg-secondary: #ede6d6;
+      --bg-subtle: #f2ece0;
+      --headings: #2b2520;
+      --text: #38312b;
+      --text-secondary: #74675c;
+      --links: #a34e36;
+      --links-hover: #803722;
+      --highlight: #f0dfa8;
+      --highlight-text: #423000;
+      --code-text: #8a412a;
+      --border: rgba(56, 49, 43, 0.16);
+      --border-subtle: rgba(56, 49, 43, 0.09);
+      --drawer-bg: #f2ece0;
+      --overlay-bg: rgba(43, 37, 32, 0.45);
+      --dropdown-bg: #f9f5ec;
+      --dropdown-shadow: 0 10px 25px -5px rgba(56, 49, 43, 0.18);
+    }
+
+    /* 4. Nord / Arctic Frost */
+    html[data-theme="nord"] {
+      --bg: #2e3440;
+      --bg-secondary: #3b4252;
+      --bg-subtle: #353b49;
+      --headings: #eceff4;
+      --text: #d8dee9;
+      --text-secondary: #9aa5b8;
+      --links: #88c0d0;
+      --links-hover: #81a1c1;
+      --highlight: #ebcb8b;
+      --highlight-text: #2e3440;
+      --code-text: #b48ead;
+      --border: rgba(216, 222, 233, 0.16);
+      --border-subtle: rgba(216, 222, 233, 0.08);
+      --drawer-bg: #353b49;
+      --overlay-bg: rgba(36, 41, 51, 0.7);
+      --dropdown-bg: #353b49;
+      --dropdown-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     }
 
     html {
@@ -101,6 +148,7 @@
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
       transition: background-color 0.25s ease, color 0.25s ease;
+      position: relative;
     }
 
     .w {
@@ -108,6 +156,7 @@
       margin: 0 auto;
       padding: 3.5em 1.5em;
       box-sizing: border-box;
+      position: relative;
     }
 
     /* Masthead */
@@ -116,6 +165,7 @@
       margin-bottom: 2.5em;
       border-top: 2px solid var(--links);
       border-bottom: 1px solid var(--border-subtle);
+      position: relative;
     }
 
     .nav-wrapper {
@@ -123,6 +173,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5em;
+      padding-right: 2.5em; /* Space for top-right theme toggle */
     }
 
     ul.horizontal-list {
@@ -132,51 +183,175 @@
       list-style: none;
       flex-wrap: wrap;
       font-family: var(--font-sans);
-      gap: 1em;
+      gap: 1.2em;
       align-items: center;
     }
 
     ul.horizontal-list li {
       display: inline;
+      position: relative;
     }
 
-    ul.horizontal-list li a {
+    /* -------------------------------------------------------------
+       MOONWALK SMOOTH UNDERLINE HIGHLIGHT (MICRO-INTERACTIONS)
+       ------------------------------------------------------------- */
+    .smooth-link,
+    ul.horizontal-list li a,
+    .page-content a,
+    .post-title,
+    footer a {
       color: var(--links);
       text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.15s ease;
+      background-image: linear-gradient(var(--links), var(--links));
+      background-size: 0% 1.5px;
+      background-position: left bottom;
+      background-repeat: no-repeat;
+      transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+      padding-bottom: 1px;
     }
 
-    ul.horizontal-list li a:hover {
+    .smooth-link:hover,
+    ul.horizontal-list li a:hover,
+    .page-content a:hover,
+    footer a:hover,
+    .post-item:hover .post-title {
+      background-size: 100% 1.5px;
       color: var(--links-hover);
-      text-decoration: underline;
     }
 
-    /* Moonwalk Theme Switcher Button */
-    .theme-toggle {
+    /* -------------------------------------------------------------
+       TOP-RIGHT THEME TOGGLE ICON (Matches uploaded screenshot)
+       ------------------------------------------------------------- */
+    .top-right-theme-control {
+      position: absolute;
+      top: 1.3em;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      z-index: 30;
+    }
+
+    .theme-icon-btn {
       background: transparent;
-      border: 1px solid var(--border);
+      border: none;
+      outline: none;
       color: var(--text-secondary);
       cursor: pointer;
-      padding: 0.35em 0.55em;
-      border-radius: var(--radius-sm);
-      display: inline-flex;
+      padding: 0.35em;
+      display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
-      transition: all 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
-    .theme-toggle:hover {
+    .theme-icon-btn:hover {
       color: var(--headings);
-      border-color: var(--links);
-      background-color: var(--bg-subtle);
+      transform: scale(1.1);
     }
 
-    .theme-toggle svg {
-      width: 17px;
-      height: 17px;
+    .theme-icon-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2;
+    }
+
+    /* Mini Toast Badge for Current Theme Name */
+    .theme-pill {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 0.1em 0.45em;
+      border-radius: var(--radius-sm);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-2px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .top-right-theme-control:hover .theme-pill,
+    .theme-pill.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* -------------------------------------------------------------
+       LINKS DROPDOWN MENU
+       ------------------------------------------------------------- */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      cursor: pointer;
+      color: var(--links);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .dropdown-trigger svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-trigger svg {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.5em);
+      left: -0.5em;
+      background-color: var(--dropdown-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--dropdown-shadow);
+      min-width: 190px;
+      padding: 0.4em 0;
+      z-index: 50;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.55em 1em;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      color: var(--text) !important;
+      text-decoration: none !important;
+      background-image: none !important;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: var(--bg-subtle);
+      color: var(--links) !important;
+    }
+
+    .dropdown-item-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
     }
 
     /* Typography */
@@ -212,17 +387,6 @@
     p {
       margin: 1.1em 0;
       color: var(--text);
-    }
-
-    a {
-      color: var(--links);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    a:hover {
-      color: var(--links-hover);
-      text-decoration: underline;
     }
 
     .dashed {
@@ -390,11 +554,6 @@
       }
     }
 
-    .post-item:hover .post-title {
-      color: var(--links);
-      text-decoration: underline;
-    }
-
     .post-date {
       font-family: var(--font-mono);
       font-size: 0.82rem;
@@ -410,7 +569,6 @@
       color: var(--headings);
       flex: 1;
       margin: 0;
-      transition: color 0.15s ease;
     }
 
     .post-readtime {
@@ -472,7 +630,7 @@
       gap: 1em;
     }
 
-    @media (min-width: 580px) {
+    @media (min-width: 680px) {
       footer {
         flex-direction: row;
         justify-content: space-between;
@@ -605,21 +763,14 @@
 <body>
   <div class="w">
 
-    <!-- Masthead with Navigation & Theme Switcher -->
+    <!-- Masthead with Navigation, Dropdown, and Top-Right Theme Toggle -->
     <header>
-      <div class="nav-wrapper">
-        <ul class="horizontal-list">
-          <li><a href="#about">about</a></li>
-          <li><a href="#work">work</a></li>
-          <li><a href="#writing">writing</a></li>
-          <li><a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">x.com</a></li>
-          <li><a href="https://github.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">github</a></li>
-        </ul>
-
-        <!-- Moonwalk SVG Theme Toggle Button -->
-        <button aria-label="Toggle dark mode" aria-pressed="false" class="theme-toggle" id="theme-button">
-          <!-- Sun Icon (shown in dark mode) -->
-          <svg class="icon-sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <!-- Top-Right Theme Control (As seen in reference screenshot) -->
+      <div class="top-right-theme-control">
+        <span class="theme-pill" id="theme-pill">[dark]</span>
+        <button aria-label="Toggle theme" class="theme-icon-btn" id="theme-button" title="Switch theme (Dark, Light, Sepia, Nord)">
+          <!-- Minimal Sun Icon matching the user's uploaded image -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -630,21 +781,55 @@
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
-          <!-- Moon Icon (shown in light mode) -->
-          <svg class="icon-moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
         </button>
+      </div>
+
+      <div class="nav-wrapper">
+        <ul class="horizontal-list">
+          <li><a href="#about">about</a></li>
+          <li><a href="#work">work</a></li>
+          <li><a href="#writing">writing</a></li>
+          
+          <!-- Dropdown for links -->
+          <li class="dropdown">
+            <span class="dropdown-trigger smooth-link">
+              links
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </span>
+            <div class="dropdown-menu">
+              <a href="https://hiimanshu19x.substack.com" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                <span>Substack</span>
+                <span class="dropdown-item-meta">newsletter</span>
+              </a>
+              <a href="https://medium.com/@hiimanshu19x" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                <span>Medium</span>
+                <span class="dropdown-item-meta">essays</span>
+              </a>
+              <a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                <span>X (Twitter)</span>
+                <span class="dropdown-item-meta">@hiimanshu19x</span>
+              </a>
+              <a href="https://linkedin.com/in/hiimanshu19x" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                <span>LinkedIn</span>
+                <span class="dropdown-item-meta">network</span>
+              </a>
+              <a href="https://github.com/hiimanshu19x" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                <span>GitHub</span>
+                <span class="dropdown-item-meta">code</span>
+              </a>
+            </div>
+          </li>
+        </ul>
       </div>
 
       <div class="status-badge">
         <span class="status-dot"></span>
-        <span>Transitioning: Sports Journalism &rarr; AI &times; Product &times; Growth</span>
+        <span>Transitioning: Sports Journalism &rarr; AI &times; Products &times; Content &times; Growth</span>
       </div>
 
       <h1>Himanshu Singh</h1>
       <p style="color: var(--text-secondary); margin-top: 0.3em; margin-bottom: 0;">
-        From the press box to the latent space. Building AI tools with narrative gravity and high-velocity growth loops.
+        From the press box to the latent space. AI &times; Products &times; Content &times; Growth.
       </p>
     </header>
 
@@ -666,13 +851,13 @@
       </blockquote>
 
       <p>
-        That background is an unfair advantage in tech. Today, language models are narrative engines. Products win on positioning and emotional resonance long before features:
+        That background is an unfair advantage in tech. Today, language models are narrative engines. Products win on positioning, emotional resonance, and organic distribution loops long before features:
       </p>
 
       <ul style="padding-left: 1.2em;">
         <li><strong>Narrative Gravity:</strong> Great positioning cuts through noise. Software is adopted when users feel immediate emotional clarity.</li>
         <li><strong>Press-Box Velocity:</strong> Rapid hypothesis testing, zero perfectionism, and tight feedback loops with real users.</li>
-        <li><strong>AI as Leverage:</strong> Building multi-agent workflows, contextual evaluation guardrails, and organic acquisition loops.</li>
+        <li><strong>AI as Content & Product Leverage:</strong> Building multi-agent workflows, contextual evaluation guardrails, and organic acquisition loops.</li>
       </ul>
     </section>
 
@@ -788,14 +973,17 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with All Beautiful Links -->
     <footer>
       <div>
         <span>&copy; 2026 Himanshu Singh</span>
       </div>
       <div>
-        <ul class="horizontal-list" style="gap: 1.2em;">
-          <li><a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">x.com/hiimanshu19x</a></li>
+        <ul class="horizontal-list" style="gap: 1.2em; font-size: 0.88rem;">
+          <li><a href="https://hiimanshu19x.substack.com" target="_blank" rel="noopener noreferrer">substack</a></li>
+          <li><a href="https://medium.com/@hiimanshu19x" target="_blank" rel="noopener noreferrer">medium</a></li>
+          <li><a href="https://x.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">x.com</a></li>
+          <li><a href="https://linkedin.com/in/hiimanshu19x" target="_blank" rel="noopener noreferrer">linkedin</a></li>
           <li><a href="https://github.com/hiimanshu19x" target="_blank" rel="noopener noreferrer">github</a></li>
           <li><a href="mailto:himanshu@example.com">email</a></li>
         </ul>
@@ -823,7 +1011,7 @@
     </div>
   </aside>
 
-  <!-- Dossier Content Database & Drawer Controller -->
+  <!-- Dossier Content Database & Interactive Controllers -->
   <script>
     const articles = {
       'matchpulse': {
@@ -992,35 +1180,37 @@
       }
     };
 
-    // Moonwalk Theme Controller
+    // -------------------------------------------------------------
+    // MULTI-THEME CONTROLLER (Dark, Light, Sepia, Nord)
+    // -------------------------------------------------------------
+    const themes = ['dark', 'light', 'sepia', 'nord'];
     const themeBtn = document.getElementById('theme-button');
-    const sunIcon = themeBtn.querySelector('.icon-sun');
-    const moonIcon = themeBtn.querySelector('.icon-moon');
+    const themePill = document.getElementById('theme-pill');
 
-    function updateThemeUI(theme) {
-      themeBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-      if (theme === 'dark') {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-      } else {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-      }
+    function applyTheme(themeName) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      localStorage.setItem('theme', themeName);
+      themePill.textContent = `[${themeName}]`;
+      themePill.classList.add('show');
+      setTimeout(() => {
+        themePill.classList.remove('show');
+      }, 1600);
     }
 
-    // Initialize button state
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    updateThemeUI(currentTheme);
+    // Set initial pill text
+    const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    themePill.textContent = `[${initialTheme}]`;
 
     themeBtn.addEventListener('click', () => {
-      const active = document.documentElement.getAttribute('data-theme');
-      const next = active === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      updateThemeUI(next);
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const currentIndex = themes.indexOf(current);
+      const nextIndex = (currentIndex + 1) % themes.length;
+      applyTheme(themes[nextIndex]);
     });
 
-    // Drawer Controller
+    // -------------------------------------------------------------
+    // SLIDE-OVER DOSSIER DRAWER CONTROLLER
+    // -------------------------------------------------------------
     const backdrop = document.getElementById('drawer-backdrop');
     const panel = document.getElementById('drawer-panel');
     const drawerTag = document.getElementById('drawer-tag');
