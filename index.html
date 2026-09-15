@@ -420,24 +420,31 @@
     /* Availability Indicator */
     .status-badge {
       display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
+      align-items: flex-start;
+      gap: 0.65em;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
+      line-height: 1.55;
       color: var(--text-secondary);
       background-color: var(--bg-subtle);
       border: 1px solid var(--border);
-      padding: 0.25em 0.65em;
+      padding: 0.35em 0.75em;
       border-radius: var(--radius-sm);
       margin-bottom: 1.2em;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .status-dot {
       width: 7px;
+      min-width: 7px;
       height: 7px;
-      background-color: #2ea043;
+      min-height: 7px;
+      background-color: #3fb950;
       border-radius: 50%;
-      box-shadow: 0 0 0 2px rgba(46, 160, 67, 0.2);
+      box-shadow: 0 0 0 2.5px rgba(63, 185, 80, 0.25);
+      flex-shrink: 0;
+      margin-top: 0.42em;
     }
 
     /* Cards Grid */
